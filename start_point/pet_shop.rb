@@ -67,3 +67,15 @@ end # PASS
 def customer_can_afford_pet(customer, new_pet)
   return customer[:cash] >= new_pet[:price] ? true : false
 end # PASS
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+
+  find_pet_by_name(pet_shop, pet)
+  if pet[:price] <= customer[:cash] && find_pet_by_name(pet_shop, pet[:name])
+    customer[:pets] << pet
+    customer[:cash] -= pet[:price]
+    pet_shop[:pets].delete(pet)
+    pet_shop[:admin][:pets_sold] += 1
+    pet_shop[:admin][:total_cash] += pet[:price]
+  end
+end
