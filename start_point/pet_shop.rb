@@ -55,3 +55,7 @@ end # PASS
 def remove_customer_cash(customer, deduction)
   customer[:cash] -= deduction
 end # PASS
+
+def customer_pet_count(customer)
+  return customer[:pets].length
+end # PASS
