@@ -35,3 +35,7 @@ return pets_of_breed
 end # PASS
 
 # ^ REFACTOR ^
+
+def find_pet_by_name(pet_shop, pet_name)
+  return pet_shop[:pets].find { |pet| pet[:name] == pet_name }
+end # PASS
