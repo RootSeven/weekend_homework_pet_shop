@@ -4,12 +4,16 @@ end # PASS
 
 def total_cash(pet_shop)
   return pet_shop[:admin][:total_cash]
-end
+end # PASS
 
 def add_or_remove_cash(pet_shop, cash)
   pet_shop[:admin][:total_cash] += cash
-end
+end # PASS
 
 def pets_sold(pet_shop)
   return pet_shop[:admin][:pets_sold]
-end
+end # PASS
+
+def increase_pets_sold(pet_shop, number)
+  pet_shop[:admin][:pets_sold] += number
+end # PASS
