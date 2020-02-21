@@ -51,3 +51,7 @@ end # PASS
 def customer_cash(customer)
   return customer[:cash]
 end # PASS
+
+def remove_customer_cash(customer, deduction)
+  customer[:cash] -= deduction
+end # PASS
