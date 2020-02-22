@@ -1,3 +1,5 @@
+require('pry-byebug')
+
 def pet_shop_name(pet_shop)
   return pet_shop[:name]
 end # PASS
@@ -38,7 +40,7 @@ end # PASS
 
 def find_pet_by_name(pet_shop, pet_name)
   return pet_shop[:pets].find { |pet| pet[:name] == pet_name }
-end # PASS
+end # PASS returns hash of pet from pets array
 
 def remove_pet_by_name(pet_shop, pet_name)
   pet_shop[:pets].delete(find_pet_by_name(pet_shop, pet_name))
@@ -69,13 +71,12 @@ def customer_can_afford_pet(customer, new_pet)
 end # PASS
 
 def sell_pet_to_customer(pet_shop, pet, customer)
+  if (customer_cash(customer) >= pet[:price]) && (pet != nil)
+    add_pet_to_customer(customer, pet) # adds pet to customer pet list
+    remove_pet_by_name(pet_shop, pet[:name]) # removes pet from pet_shop inventory
+    pet_shop[:admin][:pets_sold] += 1 # increments pet_shop pets_sold by 1
 
-  find_pet_by_name(pet_shop, pet)
-  if pet[:price] <= customer[:cash] && find_pet_by_name(pet_shop, pet[:name])
-    customer[:pets] << pet
     customer[:cash] -= pet[:price]
-    pet_shop[:pets].delete(pet)
-    pet_shop[:admin][:pets_sold] += 1
-    pet_shop[:admin][:total_cash] += pet[:price]
-  end
+    add_or_remove_cash(pet_shop, pet[:price])
+  end # PASSES for pet_found
 end
